@@ -1,0 +1,42 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: resource-quota-check
+  namespace: kube-system
+spec:
+  schedule: "0 * * * *"  # Run every hour
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: resource-quota-check
+            image: bitnami/kubectl:latest
+            command: ["/bin/sh"]
+            args: ["-c", "sh /scripts/resource_quota_check.sh"]
+            volumeMounts:
+            - name: scripts
+              mountPath: /scripts
+            resources:
+              requests:
+                cpu: "100m"
+                memory: "128Mi"
+              limits:
+                cpu: "200m"
+                memory: "256Mi"
+          restartPolicy: OnFailure
+          volumes:
+          - name: scripts
+            configMap:
+              name: resource-quota-check-scripts
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: resource-quota-check-scripts
+  namespace: kube-system
+data:
+  resource_quota_check.sh: |
+    #!/bin/bash
+    # Resource quota check script content from GitHub
+    # Copy the content of resource_quota_check.sh here
