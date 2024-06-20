@@ -4,7 +4,7 @@ metadata:
   name: resource-quota-check
   namespace: kube-system
 spec:
-  schedule: "*/5 * * * *" # Run every 5 minutes
+  schedule: "*/1 * * * *" # Run every x minutes
   jobTemplate:
     spec:
       ttlSecondsAfterFinished: 300 # Keep jobs for 5 minutes after completion
@@ -21,7 +21,7 @@ spec:
             - name: WARNING_INCREASE_LEVEL
               value: "20"
             - name: INFO_INCREASE_LEVEL
-              value: "10"
+              value: "1"
             volumeMounts:
             - name: scripts
               mountPath: /scripts
