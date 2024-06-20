@@ -22,8 +22,8 @@ spec:
                 cpu: "100m"
                 memory: "128Mi"
               limits:
-                cpu: "200m"
-                memory: "256Mi"
+                cpu: "500m"
+                memory: "512Mi"
           restartPolicy: OnFailure
           volumes:
           - name: scripts
@@ -39,4 +39,4 @@ data:
   resource_quota_check.sh: |
     #!/bin/bash
     # Resource quota check script content from GitHub
-    # Copy the content of resource_quota_check.sh here
+    # Add the actual content of resource_quota_check.sh here
