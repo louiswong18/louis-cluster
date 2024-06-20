@@ -13,8 +13,8 @@ spec:
           containers:
           - name: resource-quota-check
             image: bitnami/kubectl:latest
-            command: ["/bin/sh"]
-            args: ["-c", "sh /scripts/resource_quota_check.sh"]
+            command: ["/bin/bash"] # Change to /bin/bash
+            args: ["-c", "bash /scripts/resource_quota_check.sh"]
             env:
             - name: CRITICAL_INCREASE_LEVEL
               value: "30"
