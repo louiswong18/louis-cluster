@@ -4,7 +4,7 @@ metadata:
   name: resource-quota-check
   namespace: kube-system
 spec:
-  schedule: "0 * * * *"  # Run every hour
+  schedule: "*/5 * * * *" # Run every 5 minutes
   jobTemplate:
     spec:
       template:
@@ -14,6 +14,13 @@ spec:
             image: bitnami/kubectl:latest
             command: ["/bin/sh"]
             args: ["-c", "sh /scripts/resource_quota_check.sh"]
+            env:
+            - name: CRITICAL_INCREASE_LEVEL
+              value: "30"  # Lower the critical increase level to see recommendations earlier
+            - name: WARNING_INCREASE_LEVEL
+              value: "20"  # Lower the warning increase level
+            - name: INFO_INCREASE_LEVEL
+              value: "10"  # Lower the info increase level
             volumeMounts:
             - name: scripts
               mountPath: /scripts
