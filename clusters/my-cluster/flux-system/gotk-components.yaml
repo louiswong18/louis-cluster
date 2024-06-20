@@ -4624,11 +4624,6 @@ spec:
         name: data
       - emptyDir: {}
         name: tmp
-      tolerations:
-      - key: "eks.amazonaws.com/compute-type"
-        operator: "Equal"
-        value: "fargate"
-        effect: "NoSchedule"
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -6493,11 +6488,6 @@ spec:
       volumes:
       - emptyDir: {}
         name: temp
-      tolerations:
-      - key: "eks.amazonaws.com/compute-type"
-        operator: "Equal"
-        value: "fargate"
-        effect: "NoSchedule"        
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -10358,11 +10348,6 @@ spec:
       volumes:
       - emptyDir: {}
         name: temp
-      tolerations:
-      - key: "eks.amazonaws.com/compute-type"
-        operator: "Equal"
-        value: "fargate"
-        effect: "NoSchedule"	        
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -12398,8 +12383,3 @@ spec:
       volumes:
       - emptyDir: {}
         name: temp
-      tolerations:
-      - key: "eks.amazonaws.com/compute-type"
-        operator: "Equal"
-        value: "fargate"
-        effect: "NoSchedule"
